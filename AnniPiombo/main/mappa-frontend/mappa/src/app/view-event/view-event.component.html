@@ -1,0 +1,12 @@
+<div class="view-event-container">
+    <div *ngIf="event" class="event-card">
+      <h2 class="event-title"><strong>Titolo: </strong>{{ event.title }}</h2>
+      <p class="event-detail"><strong>Data: </strong>{{ event.date }}</p>
+      <p class="event-detail"><strong>Luogo: </strong>{{ event.location }}</p>
+      <p class="event-detail"><strong>Coordinate: </strong>{{ event.coordinatex }}, {{ event.coordinatey }}</p>
+      <p class="event-detail"><strong>Tags: </strong>{{ event.tags }}</p>
+      <p class="event-detail"><strong>Importante: </strong>{{ event.is_important ? 'Sì' : 'No' }}</p>
+      <p class="event-content-label"><strong>Contenuto: </strong></p>
+      <div class="event-content" [innerHTML]="event.sanitizedContent"></div>
+    </div>
+  </div>

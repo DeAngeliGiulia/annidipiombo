@@ -1,0 +1,18 @@
+<div class="timeline-container">
+  <h1>Linea Temporale - Anni di Piombo</h1>
+  <div class="timeline">
+    <div *ngFor="let yearEvent of eventsByYear"class="year"(click)="selectEvent(yearEvent)">
+      {{ yearEvent.anno }}
+    </div>
+  </div>
+</div>
+
+<div class="mappa-e-card">
+  <div class="map-container"
+       leaflet
+       [leafletOptions]="options"
+       (leafletMapReady)="onMapReady($event)">
+  </div>
+  <app-view-event *ngIf="mostraCard && eventoSelezionato" [eventId]="eventoSelezionato.id"></app-view-event>
+
+   

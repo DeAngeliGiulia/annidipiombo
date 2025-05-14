@@ -1,0 +1,71 @@
+/* Stili globali - Palette di colori più chiara */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #37474f;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .view-event-container {
+    max-width: 1200px; /* Aumenta la larghezza massima della card */
+    margin: 20px auto;
+    padding: 30px; /* Aumenta il padding per un aspetto più spazioso */
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* Ombra un po' più forte */
+    border-radius: 12px; /* Angoli più arrotondati */
+  }
+  
+  /* Stili per la singola card dell'evento */
+  .event-card {
+    background-color: #ffffff;
+    padding: 30px; /* Aumenta il padding per più spazio interno */
+    margin-bottom: 20px;
+    border-left: 8px solid #43a047; /* Aumenta la larghezza della barra laterale */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombra più intensa */
+    width: 100%;
+    font-size: 1.1rem; /* Aumenta leggermente la dimensione del font */
+  }
+  
+  /* Titolo dell'evento */
+  .event-title {
+    color: #1a237e;
+    margin-top: 0;
+    margin-bottom: 18px; /* Aumenta lo spazio tra il titolo e i dettagli */
+    font-size: 2rem; /* Aumenta la dimensione del titolo */
+    font-weight: 600; /* Rende il titolo più marcato */
+  }
+  
+  /* Dettagli dell'evento */
+  .event-detail {
+    color: #546e7a;
+    margin-bottom: 10px; /* Maggiore distanza tra i dettagli */
+    font-size: 1rem; /* Aumenta leggermente la dimensione del font */
+  }
+  
+  .event-detail strong {
+    font-weight: 700; /* Rende il grassetto più evidente */
+    color: #263238;
+  }
+  
+  .event-content-label {
+    font-weight: 700; /* Rende il label del contenuto più marcato */
+    margin-top: 18px;
+    margin-bottom: 10px; /* Maggiore spazio sopra e sotto il label */
+    color: #263238;
+  }
+  
+  /* Contenuto dell'evento */
+  .event-content {
+    padding: 18px;
+    background-color: #f8f8f8;
+    border: 1px solid #b2ebf2;
+    border-radius: 8px;
+    font-size: 1.1rem; /* Aumenta la dimensione del testo nel contenuto */
+    color: #455a64;
+    white-space: pre-wrap;
+    overflow: visible;
+  }
+  
