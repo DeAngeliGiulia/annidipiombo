@@ -3,10 +3,8 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from datetime import datetime
-import mysql.connector
 import os
 import uuid
-from bs4 import BeautifulSoup
 from models import mydb, mycursor,initialize_database # importa la connessione MySQL
 
 app = Flask(__name__)
