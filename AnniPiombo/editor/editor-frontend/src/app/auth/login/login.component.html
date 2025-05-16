@@ -1,0 +1,55 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>lock</mat-icon>
+        Accesso
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- Username -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required>
+          <mat-error *ngIf="username?.hasError('required')">
+            Username obbligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+                 formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="password?.hasError('required')">
+            Password obbligatoria
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Error/Success message -->
+        <div *ngIf="errorMessage || successMessage" class="message" [class.error]="errorMessage" [class.success]="successMessage">
+          <mat-icon>{{ errorMessage ? 'error' : 'check_circle' }}</mat-icon>
+          {{ errorMessage || successMessage }}
+        </div>
+
+        <!-- Submit button with better loading state -->
+        <button mat-raised-button color="primary" type="submit" 
+                [disabled]="loginForm.invalid || isLoading"
+                class="submit-button">
+          <div class="button-content">
+            <span *ngIf="!isLoading">Accedi</span>
+            <div *ngIf="isLoading" class="loading-indicator">
+              <mat-spinner diameter="20" strokeWidth="3"></mat-spinner>
+              <span>Accesso in corso...</span>
+            </div>
+          </div>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

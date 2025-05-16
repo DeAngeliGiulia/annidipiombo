@@ -1,0 +1,100 @@
+<div class="editor-container">
+  <header>
+    <h1>Editor</h1>
+    <button (click)="logout()" class="logout-button">Logout</button>
+    <button mat-raised-button color="accent" routerLink="/view-events">
+      Visualizza Eventi
+    </button>
+  </header>
+
+  <main>
+    <p>Benvenuto nell'area editor!</p>
+  </main>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  
+  <mat-card>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Titolo</mat-label>
+        <input matInput type="text" name="title" [(ngModel)]="event.title" required />
+      </mat-form-field>
+      <br>
+    </form>
+      <app-custom-editor 
+        name="content" 
+        [(ngModel)]="event.content" 
+        required 
+        placeholder="Inserisci il contenuto dell'evento...">
+      </app-custom-editor>
+      <br>
+      <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Data</mat-label>
+        <input 
+          matInput 
+          [matDatepicker]="picker" 
+          (dateChange)="onDatePickerChange($event)"
+          [(ngModel)]="selectedDate"
+          name="datepicker"
+          placeholder="Scegli una data">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Oppure inserisci manualmente (GG/MM/AAAA)</mat-label>
+        <input 
+          matInput 
+          type="text" 
+          name="date" 
+          [(ngModel)]="event.date" 
+          (change)="onManualDateChange()"
+          placeholder="GG/MM/AAAA"
+          pattern="\d{2}/\d{2}/\d{4}" 
+          title="Inserisci la data nel formato GG/MM/AAAA" />
+      </mat-form-field>
+    </form>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Luogo</mat-label>
+        <input matInput type="text" name="location" [(ngModel)]="event.location" />
+      </mat-form-field>
+    </form>
+    <p>Per Trovare le Coordinate X e Y di un luogo utilizza questo link : <a href="https://www.openstreetmap.org/search?query=milano&zoom=6&minlon=-8.525390625000002&minlat=34.72355492704221&maxlon=33.66210937500001&maxlat=48.67645370777654#map=12/45.4613/9.1595" target="_blank" rel=" noopener noreferrer">Open Street Map</a></p>
+       <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Coordinate X</mat-label>
+        <input matInput type="text" name="coordinatex" [(ngModel)]="event.coordinatex" />
+      </mat-form-field>
+    </form>
+       <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Coordinate Y</mat-label>
+        <input matInput type="text" name="coordinatey" [(ngModel)]="event.coordinatey" />
+      </mat-form-field>
+    </form>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Tags</mat-label>
+        <input matInput type="text" name="tags" [(ngModel)]="event.tags" placeholder="Es: Brigate Rosse, Moro" />
+      </mat-form-field>
+    </form>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <mat-checkbox name="isImportant" [(ngModel)]="event.is_important">Evento Importante</mat-checkbox>
+    </form>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+      <button mat-raised-button color="primary" type="submit" [disabled]="isUploading">
+        {{ isUploading ? 'Salvataggio in corso...' : 'Salva Evento' }}
+      </button>
+    </form>
+    
+  </mat-card>
+</div>

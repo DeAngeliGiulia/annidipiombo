@@ -1,0 +1,219 @@
+/* Stile generale del contenitore */
+.rich-editor-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fdfdfd;
+}
+
+/* Barra degli strumenti */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  background-color: #f1f3f5;
+  border-bottom: 1px solid #ccc;
+  gap: 10px;
+}
+.editor-content h1 { font-size: 2em; font-weight: bold; }
+.editor-content h2 { font-size: 1.5em; font-weight: bold; }
+.editor-content h3 { font-size: 1.17em; font-weight: bold; }
+.editor-content pre { font-family: monospace; background: #f5f5f5; padding: 10px; }
+/* Gruppi di strumenti */
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Pulsanti della toolbar */
+.toolbar-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-button:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-button:active {
+  background-color: #dee2e6;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.toolbar-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+}
+
+.toolbar-button i {
+  font-size: 16px;
+}
+
+/* Menu a tendina */
+.format-select, .font-select {
+  height: 36px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.format-select:hover, .font-select:hover {
+  border-color: #adb5bd;
+}
+
+/* Selettori di colore */
+.color-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.color-picker input[type="color"] {
+  width: 36px;
+  height: 36px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.color-indicator {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Area di editing */
+.editor-content {
+  min-height: 300px;
+  padding: 20px;
+  outline: none;
+  overflow-y: auto;
+  line-height: 1.8;
+  font-size: 16px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.editor-content:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Visualizzazione codice sorgente */
+.editor-content.source-view {
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+/* Stili per il contenuto editabile */
+.editor-content h1, 
+.editor-content h2, 
+.editor-content h3 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.editor-content h1 { font-size: 2.5em; }
+.editor-content h2 { font-size: 2em; }
+.editor-content h3 { font-size: 1.5em; }
+
+.editor-content p {
+  margin-bottom: 1.2em;
+}
+
+.editor-content ul, 
+.editor-content ol {
+  margin-left: 2em;
+  margin-bottom: 1.2em;
+}
+
+.editor-content pre {
+  background-color: #f1f3f5;
+  padding: 1.2em;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+
+.editor-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
+.editor-content table, 
+.editor-content th, 
+.editor-content td {
+  border: 1px solid #ccc;
+}
+
+.editor-content th, 
+.editor-content td {
+  padding: 10px;
+  text-align: left;
+}
+
+.editor-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 12px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Input file nascosto */
+input[type="file"] {
+  display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .toolbar-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

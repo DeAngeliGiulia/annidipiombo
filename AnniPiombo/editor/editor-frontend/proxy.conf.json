@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://fantastic-space-lamp-g44q9q7v4qqv2v45p-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/api": ""}
+  }
+}

@@ -1,0 +1,46 @@
+/* Stili per i messaggi */
+.message {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 16px 0;
+  border-radius: 4px;
+}
+
+.message.error {
+  background-color: #fdecea;
+  color: #d32f2f;
+}
+
+.message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.message mat-icon {
+  margin-right: 8px;
+}
+
+/* Stili per il pulsante di login */
+.submit-button {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Animazione per lo spinner */
+mat-spinner {
+  margin: 0 auto;
+}

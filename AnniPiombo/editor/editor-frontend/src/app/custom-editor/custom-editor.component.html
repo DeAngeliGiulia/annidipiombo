@@ -1,0 +1,142 @@
+<div class="rich-editor-container">
+  <div class="toolbar">
+    <!-- Formattazione testo -->
+    <div class="toolbar-group">
+      <select class="format-select" (change)="tipotesto($event)">
+        <option value="p">Paragrafo</option>
+        <option value="h1">Titolo 1</option>
+        <option value="h2">Titolo 2</option>
+        <option value="h3">Titolo 3</option>
+        <option value="pre">Codice</option>
+      </select>
+      <i class="fas fa-text-height" title="Formato testo">🅰️</i>
+      <select class="font-select" (change)="changeFontFamily($event)">
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Times New Roman, serif">Times New Roman</option>
+        <option value="Courier New, monospace">Courier New</option>
+        <option value="Georgia, serif">Georgia</option>
+      </select>
+      <i class="fas fa-font" title="Font">🔤</i>
+    </div>
+
+    <!-- Stili testo -->
+    <div class="toolbar-group">
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('bold')" 
+              (click)="formatText('bold')" 
+              title="Grassetto">
+        <i class="fas fa-bold">𝗕</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('italic')" 
+              (click)="formatText('italic')" 
+              title="Corsivo">
+        <i class="fas fa-italic">𝘐</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('underline')" 
+              (click)="formatText('underline')" 
+              title="Sottolineato">
+        <i class="fas fa-underline">U̲</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('strikeThrough')" 
+              (click)="formatText('strikeThrough')" 
+              title="Barrato">
+        <i class="fas fa-strikethrough">S̶</i>
+      </button>
+    </div>
+
+    <!-- Colori -->
+    <div class="toolbar-group">
+      <div class="color-picker">
+        <input type="color" [(ngModel)]="textColor" (change)="setTextColor($event)" title="Colore testo">
+        <span class="color-indicator"><i class="fas fa-palette">🎨</i></span>
+      </div>
+      <div class="color-picker">
+        <input type="color" [(ngModel)]="backgroundColor" (change)="setBackgroundColor($event)" title="Colore sfondo">
+        <span class="color-indicator"><i class="fas fa-fill-drip">🖌️</i></span>
+      </div>
+    </div>
+
+    <!-- Allineamento -->
+    <div class="toolbar-group">
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('justifyLeft')" 
+              (click)="setAlignment('left')" 
+              title="Allinea a sinistra">
+        <i class="fas fa-align-left">⬅️</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('justifyCenter')" 
+              (click)="setAlignment('center')" 
+              title="Allinea al centro">
+        <i class="fas fa-align-center">↔️</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('justifyRight')" 
+              (click)="setAlignment('right')" 
+              title="Allinea a destra">
+        <i class="fas fa-align-right">➡️</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('justifyFull')" 
+              (click)="setAlignment('justify')" 
+              title="Giustifica">
+        <i class="fas fa-align-justify">🔳</i>
+      </button>
+    </div>
+
+    <!-- Liste -->
+    <div class="toolbar-group">
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('insertOrderedList')" 
+              (click)="formatText('insertOrderedList')" 
+              title="Lista numerata">
+        <i class="fas fa-list-ol">1️⃣</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('insertUnorderedList')" 
+              (click)="formatText('insertUnorderedList')" 
+              title="Lista puntata">
+        <i class="fas fa-list-ul">•</i>
+      </button>
+    </div>
+
+    <!-- Elementi avanzati -->
+    <div class="toolbar-group">
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('createLink')" 
+              (click)="insertLink()" 
+              title="Inserisci link">
+        <i class="fas fa-link">🔗</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('insertImage')" 
+              (click)="insertImage()" 
+              title="Inserisci immagine">
+        <i class="fas fa-image">🖼️</i>
+      </button>
+      <button class="toolbar-button" 
+              [class.active]="isActiveTool('insertTable')" 
+              (click)="insertTable()" 
+              title="Inserisci tabella">
+        <i class="fas fa-table">📊</i>
+      </button>
+    </div>
+
+    <!-- Visualizzazione -->
+    <div class="toolbar-group">
+      <button class="toolbar-button" (click)="toggleSourceView()" title="Visualizzazione codice">
+        <i class="fas fa-code">💻</i>
+      </button>
+    </div>
+  </div>
+
+  <input #imageInput type="file" accept="image/*" style="display: none" (change)="onImageSelected($event)" multiple>
+  
+  <div #editableContent class="editor-content" [class.source-view]="isSourceView" 
+       (input)="saveContentIfChanged()" (keydown)="onKeyDown($event)" (paste)="onPaste($event)"
+       (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+  </div>
+</div>
