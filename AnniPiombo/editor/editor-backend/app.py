@@ -6,12 +6,13 @@ from datetime import datetime
 import os
 import uuid
 from models import initialize_database, create_tables # importa la connessione MySQL
+import mysql.connector
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 create_tables()
-#initialize_database()
+initialize_database()
 
 
 UPLOAD_FOLDER = 'static/uploads'
@@ -36,7 +37,7 @@ def get_connection():
 def test():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM USERS")
+    cursor.execute("SELECT * FROM users")
     events = cursor.fetchall()
     cursor.close()
     conn.close()
