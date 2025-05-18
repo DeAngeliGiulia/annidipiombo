@@ -3,29 +3,30 @@ services:
   mysql:
     image: mysql:8.4
     environment:
-      MYSQL_ROOT_PASSWORD: prova
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: pino
-      MYSQL_PASSWORD: prova
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: piombobase
+      MYSQL_USER: piombo
+      MYSQL_PASSWORD: annipiombo
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
-  mysql-client:
-    image: mysql:8.4
-    entrypoint: ["sleep", "infinity"]
+ # mysql-client:
+ #   image: mysql:8.4
+ #  entrypoint: ["sleep", "infinity"]
 
   python-app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./editor/editor-backend
+      dockerfile: dockerfile
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: prova
+      MYSQL_DATABASE: piombobase
+      MYSQL_USER: piombo
+      MYSQL_PASSWORD: annipiombo
+      MYSQL_ROOT_PASSWORD: root
     depends_on:
       - mysql
     ports:
