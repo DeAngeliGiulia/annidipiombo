@@ -6,8 +6,9 @@ COPY . /dist/src/app
 RUN npm cache clean --force
 RUN npm install @angular/cli@16.1.4 -g
 RUN npm install
-RUN ng build --base-href /editor-frontend/
-
+RUN ng build
+ #--base-href /editor-frontend/
+ 
 # Stage 2: Install Nginx, Copy files and Expose Port
 FROM nginx:latest AS ngi
 EXPOSE 4201
