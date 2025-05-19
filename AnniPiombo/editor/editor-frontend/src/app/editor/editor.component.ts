@@ -119,7 +119,7 @@ export class EditorComponent {
       
       // Make the HTTP request
       const response = await this.http.post(
-        'https://5000-dangeloluca-logineditor-yk538yv19ss.ws-eu118.gitpod.io/api/events', 
+        'editor-backend/events', 
         formData
       ).toPromise();
 
@@ -167,7 +167,7 @@ export class EditorComponent {
     formData.append('image', blob, 'uploaded_image.png');
     
     const response = await this.http.post<any>(
-      'https://5000-dangeloluca-logineditor-yk538yv19ss.ws-eu118.gitpod.io/upload-image',
+      'editor-backend/upload-image',
       formData
     ).toPromise();
     
