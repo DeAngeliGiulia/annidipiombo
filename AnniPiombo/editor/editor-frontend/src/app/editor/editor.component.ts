@@ -119,8 +119,9 @@ export class EditorComponent {
       
       // Make the HTTP request
       const response = await this.http.post(
-        'editor-backend/events', 
-        formData
+        'editor-backend/api/events', 
+        formData,
+       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
       ).toPromise();
 
       console.log('Event saved successfully:', response);
