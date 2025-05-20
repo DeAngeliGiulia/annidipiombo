@@ -1,1 +1,5 @@
-#TODO
+FROM node:10-alpine
+WORKDIR /AnniPiombo/main/mappa-frontend
+COPY . .
+RUN yarn install --production
+CMD ["node", "/src/app/app.component.ts"]
