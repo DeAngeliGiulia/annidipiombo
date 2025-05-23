@@ -119,8 +119,9 @@ export class EditorComponent {
       
       // Make the HTTP request
       const response = await this.http.post(
-        'https://5000-dangeloluca-logineditor-yk538yv19ss.ws-eu118.gitpod.io/api/events', 
-        formData
+        'editor-backend/api/events', 
+        formData,
+       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
       ).toPromise();
 
       console.log('Event saved successfully:', response);
@@ -167,7 +168,7 @@ export class EditorComponent {
     formData.append('image', blob, 'uploaded_image.png');
     
     const response = await this.http.post<any>(
-      'https://5000-dangeloluca-logineditor-yk538yv19ss.ws-eu118.gitpod.io/upload-image',
+      'editor-backend/upload-image',
       formData
     ).toPromise();
     
