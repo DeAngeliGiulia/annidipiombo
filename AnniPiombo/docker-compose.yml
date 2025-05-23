@@ -1,66 +1,34 @@
-#Prova commit
 services:
   mysql:
     image: mysql:8.4
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: piombobase
-      MYSQL_USER: piombo
-      MYSQL_PASSWORD: annipiombo
+      MYSQL_ROOT_PASSWORD: prova
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: pino
+      MYSQL_PASSWORD: prova
     ports:
       - "3306:3306"
     volumes:
-      - /mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - mysql_data:/var/lib/mysql
 
- # mysql-client:
- #   image: mysql:8.4
- #  entrypoint: ["sleep", "infinity"]
+  mysql-client:
+    image: mysql:8.4
+    entrypoint: ["sleep", "infinity"]
 
-  editor-backend:
+  python-app:
     build:
-      context: ./editor/editor-backend
-      dockerfile: dockerfile
+      context: .
+      dockerfile: Dockerfile
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
-      MYSQL_DATABASE: piombobase
-      MYSQL_USER: piombo
-      MYSQL_PASSWORD: annipiombo
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: prova
     depends_on:
-      mysql:
-        condition: service_healthy
+      - mysql
     ports:
       - "5000:5000"
-  
-  editor-frontend:
-    build:
-      context: ./editor/editor-frontend
-      dockerfile: dockerfile
-    ports:
-      - "4201:4201"
-    #depends_on:
-     # python-app:
-      #  condition: service_healthy
-#
-  nginx:
-    build:
-      context: ./reverse-proxy
-      dockerfile: dockerfile
-    ports:
-      - "8080:8080"
-    depends_on:
-      - editor-backend
-      - editor-frontend
 
 volumes:
   mysql_data:
-
-  #anngular-client-editor
-  
-   

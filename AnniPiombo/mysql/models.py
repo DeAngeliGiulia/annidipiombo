@@ -1,24 +1,23 @@
 import mysql.connector
 from werkzeug.security import generate_password_hash
-import os
 
 # Connessione iniziale senza database
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="",
+  database ="events"
+)
+mycursor = mydb.cursor()
+
+
 
 def create_tables():
-    mydb = mysql.connector.connect(
-        host = os.getenv('MYSQL_HOST'),
-        user = 'root',
-        password = os.getenv('MYSQL_ROOT_PASSWORD'),
-        database = os.getenv('MYSQL_DATABASE')
-    ) 
-    # Crea un cursore per eseguire le query
-    mycursor = mydb.cursor()
-    
     # Crea il database se non esiste
-    mycursor.execute("CREATE DATABASE IF NOT EXISTS piombobase")
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS events")
 
     # Seleziona il database appena creato
-    mycursor.execute("USE piombobase")
+    mycursor.execute("USE events")
 
     # Crea la tabella users
     mycursor.execute("""
@@ -57,21 +56,16 @@ def create_tables():
         );
     """)
 
-    #Chiude la connessione
-    mydb.commit()
-    mycursor.close()
-    mydb.close()
-
 # Esegui la funzione per creare database e tabelle
-
+create_tables()
 
 
 def initialize_database():
     conn = mysql.connector.connect(
-        host = os.getenv('MYSQL_HOST'),
-        user = 'root',
-        password = os.getenv('MYSQL_ROOT_PASSWORD'),
-        database = os.getenv('MYSQL_DATABASE')
+        host="localhost",
+        user="root",
+        password="",
+        database ="events"
     )
     cursor = conn.cursor()
 

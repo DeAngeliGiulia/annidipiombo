@@ -5,15 +5,11 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
 import uuid
-from models import initialize_database, create_tables # importa la connessione MySQL
-import mysql.connector
+from models import mydb, mycursor,initialize_database # importa la connessione MySQL
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-create_tables()
 initialize_database()
-
 
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -23,25 +19,14 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-#Connessione mysql che prende dati dalle variabili d'ambiente
+# Connessione MySQL
 def get_connection():
     return mysql.connector.connect(
-        host = os.getenv('MYSQL_HOST'),
-        user = 'root',
-        password = os.getenv('MYSQL_ROOT_PASSWORD'),
-        database = os.getenv('MYSQL_DATABASE')
+        host='localhost',
+        user='root',
+        password='',
+        database='events'
     )
-
-#App route di test per verificare connessione al db
-@app.route('/test', methods=['GET'])
-def test():
-    conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM users")
-    events = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return jsonify(events), 200
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

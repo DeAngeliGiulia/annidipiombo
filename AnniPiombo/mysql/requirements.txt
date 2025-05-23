@@ -2,4 +2,3 @@ flask
 flask-sqlalchemy
 flask-cors
 werkzeug
-mysql-connector-python
